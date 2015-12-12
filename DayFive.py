@@ -31,7 +31,7 @@ def checkNice2(string):
 def checkStrings():
     nice1Count = 0
     nice2Count = 0
-    with open("DayFiveInput.txt") as file:
+    with open("inputs/DayFiveInput.txt") as file:
         for line in file:
             if checkNice(line):
                 nice1Count += 1

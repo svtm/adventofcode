@@ -1,3 +1,5 @@
+## not finished
+
 class Wire:
     def __init__(self
 

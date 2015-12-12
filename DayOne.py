@@ -1,6 +1,6 @@
 floor = 0;
 position = 0;
-with open("DayOneRoute.txt") as file:
+with open("inputs/DayOneRoute.txt") as file:
         for word in file:
                 for ch in word:
                     position += 1;

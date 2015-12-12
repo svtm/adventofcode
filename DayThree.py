@@ -18,7 +18,7 @@ roboY = y
 
 houses = dict({str(x)+":"+str(y): 2})
 robo = False
-with open("DayThreeInput.txt") as file:
+with open("inputs/DayThreeInput.txt") as file:
     for line in file:
         for word in line:
             for ch in word:

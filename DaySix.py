@@ -33,7 +33,7 @@ def countLights():
     return count
 
 def readStrings():
-    with open("DaySixInput.txt") as file:
+    with open("inputs/DaySixInput.txt") as file:
         for line in file:
             instr = line.split(" ")
             if (instr[0] == "toggle"):

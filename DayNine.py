@@ -13,7 +13,7 @@ def distance(origin, destination):
 
 
 
-with open("DayNineInput.txt") as file:
+with open("inputs/DayNineInput.txt") as file:
     for line in file:
         cities, dist = line.split(" = ")
         origin, destination = cities.split(" to ")

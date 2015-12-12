@@ -1,6 +1,6 @@
 totalPaperArea = 0;
 totalRibbonLength = 0;
-with open("DayTwoInput.txt") as file:
+with open("inputs/DayTwoInput.txt") as file:
     for line in file:
         dims = line.split('x')
         dims = [int(i) for i in dims]

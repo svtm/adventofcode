@@ -1,3 +1,5 @@
+## not finished
+
 def code_and_string_len(line):
     code = 0
     for ch in line:
@@ -9,7 +11,7 @@ def code_and_string_len(line):
 
 stringLen = 0
 codeLen = 0
-with open("DayEightInput.txt") as file:
+with open("inputs/DayEightInput.txt") as file:
     for line in file:
         print(line)
         for ch in line:

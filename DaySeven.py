@@ -1,28 +1,52 @@
-## not finished
 
-class Wire:
-    def __init__(self
+inputs = dict()
 
+with open("inputs/DaySevenInput.txt") as file:
+    for line in file:
+        line = line.strip().split(" -> ")
+        inputs[line[-1]] = line[0].split(" ")
 
-class Gate:
+def evalWire(wire):
+    if wire.isdigit():
+        return int(wire)
 
-    def __init__(self, gateType, wire1, wire2):
-        self.gateType = gateType
-        self.wire1 = wire1
-        self.wire2 = wire2
+    expression = inputs[wire]
+    if type(expression) == int:
+        return expression
 
-    def solve() {
-        if gateType == None:
-            return wire2.solve()
-
-        if (gateType == "AND"):
-            return wire1.solve() & wire2.solve()
-        if (gateType == "OR"):
-            return wire1.solve() | wire2.solve()
-        if (gateType == "NOT"):
-            return ~wire2.solve() & 0xFFFF
-        if (gateType == "LSHIFT"):
-            return wire1.solve() << wire2.solve()
-        if (gateType == "RSHIFT"):
-            return wire1.solve() >> wire2.solve()
-    
+    if "AND" in expression:
+        x = expression[0]
+        y = expression[2]
+        val = evalWire(x) & evalWire(y)
+        inputs[wire] = val
+        return val
+    elif "OR" in expression:
+        x = expression[0]
+        y = expression[2]
+        val = evalWire(x) | evalWire(y)
+        inputs[wire] = val
+        return val
+    elif "NOT" in expression:
+        x = expression[1]
+        val = ~evalWire(x)
+        inputs[wire] = val
+        return val
+    elif "LSHIFT" in expression:
+        x = expression[0]
+        y = expression[2]
+        val = evalWire(x) << evalWire(y)
+        inputs[wire] = val
+        return val
+    elif "RSHIFT" in expression:
+        x = expression[0]
+        y = expression[2]
+        val = evalWire(x) >> evalWire(y)
+        inputs[wire] = val
+        return val
+    else:
+        if expression[0].isdigit():
+            return int(expression[0])
+        else:
+            return evalWire(expression[0])
+        
+print(evalWire('a'))

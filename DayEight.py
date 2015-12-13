@@ -1,22 +1,12 @@
-## not finished
+import re
 
-def code_and_string_len(line):
-    code = 0
-    for ch in line:
-        code += 1
-    print(line)
-    line = line.replace('\"', '')
-    print(line)
-    return code, len(line)
-
-stringLen = 0
-codeLen = 0
+count = 0
+encoded = 0
 with open("inputs/DayEightInput.txt") as file:
-    for line in file:
-        print(line)
-        for ch in line:
-            codeLen += 1
-        line = line.replace('\"', '')
-        stringLen += len(line)
-
-print("Codelength - stringlength = " + str(codeLen - stringLen))
+    data = file.read()
+    for line in data.splitlines():
+        count += len(eval(line))
+        encoded += len(re.escape(line)) + 2 # + 2 for quotation marks
+    char = len(data.replace("\n", ""))
+print("Part 1: " + str(char-count))
+print("Part 2: " + str(encoded-char))

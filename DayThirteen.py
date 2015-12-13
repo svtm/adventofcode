@@ -31,3 +31,11 @@ with open("inputs/DayThirteenInput.txt") as file:
 
 calc_happiness(people, values)
 
+## part 2
+
+for person in people:
+    values[("Me", person)] = 0
+    values[(person, "Me")] = 0
+people.add("Me")
+
+calc_happiness(people, values)

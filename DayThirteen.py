@@ -1,5 +1,20 @@
 from itertools import permutations
 
+def calc_happiness(people, values):
+    res = {}
+    for perm in permutations(people):
+        happiness = 0
+        for pair in zip(perm, perm[1:]):
+            happiness += values[pair]
+        for pair in zip(perm[::-1], perm[-2::-1]):
+            happiness += values[pair]
+
+        happiness += values[(perm[0], perm[-1])]
+        happiness += values[(perm[-1], perm[0])]
+        res[perm] = happiness
+    print(max(res.values()))
+    
+
 people = set()
 values = {}
 with open("inputs/DayThirteenInput.txt") as file:
@@ -13,17 +28,6 @@ with open("inputs/DayThirteenInput.txt") as file:
         people.add(line[0])
         people.add(line[-1])
 
-res = {}
-for perm in permutations(people):
-    happiness = 0
-    for pair in zip(perm, perm[1:]):
-        happiness += values[pair]
-    for pair in zip(perm[::-1], perm[-2::-1]):
-        happiness += values[pair]
 
-    happiness += values[(perm[0], perm[-1])]
-    happiness += values[(perm[-1], perm[0])]
+calc_happiness(people, values)
 
-    res[perm] = happiness
-
-print(max(res.values()))

@@ -48,5 +48,19 @@ def evalWire(wire):
             return int(expression[0])
         else:
             return evalWire(expression[0])
-        
+
+aValue = evalWire('a')
+print(aValue)
+
+## part 2:
+
+## resetting wires:
+with open("inputs/DaySevenInput.txt") as file:
+    for line in file:
+        line = line.strip().split(" -> ")
+        inputs[line[-1]] = line[0].split(" ")
+
+## putting value of a in b and reevaluating a
+inputs['b'] = aValue
+
 print(evalWire('a'))

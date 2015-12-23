@@ -4,6 +4,10 @@ class Reindeer:
         self.speed = speed
         self.time = time
         self.rest = rest
+        self.currentRest = 0
+        self.currentTime = time
+        self.dist = 0
+        self.points = 0
 
     def distance(self, seconds):
         dist = 0
@@ -15,6 +19,26 @@ class Reindeer:
                 dist += self.speed * self.time
             seconds -= (self.time + self.rest)
         return dist
+
+    def move_for_second(self):
+        if self.currentTime > 0:
+            self.dist += self.speed
+            self.currentTime -= 1
+            if self.currentTime == 0:
+                self.currentRest = self.rest
+        elif self.currentRest > 0:
+            self.currentRest -= 1
+            if self.currentRest == 0:
+                self.currentTime = self.time
+        return self.dist
+
+    def give_point(self):
+        self.points += 1
+
+    def __str__(self):
+        return self.name + ": " + str(self.points)
+            
+            
 
 deer = []
 with open("inputs/DayFourteenInput.txt") as file:
@@ -33,4 +57,18 @@ for reindeer in deer:
         winner = (reindeer.name, dist)
 
 print(winner)
+
+## part 2
+totalDist = dict()
+for i in range(2503):
+    for reindeer in deer:
+        totalDist[reindeer.name] = reindeer.move_for_second()
+    lead = max(totalDist.values())
+    for reindeer in deer:
+        if reindeer.dist == lead:
+            reindeer.give_point()
+
+for reindeer in deer:
+    print(reindeer)
+    
         
